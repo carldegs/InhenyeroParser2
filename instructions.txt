@@ -1,0 +1,26 @@
+1. Place masterdata.csv to the /public folder.
+    - Make sure that masterdata.csv is exported as CSV (MS-DOS)
+    - Make sure that the file contains the following columns in order:
+        - studentNum    - org2Name      - telephone
+        - lastName      - org2Pos       - address
+        - firstName     - org3Name      - writeup
+        - middleName    - org3Pos       - packageType
+        - course        - email         - filler*
+        - org1Name      - mobile
+        - org1Pos       - birthday
+    - There should be a filler column at the end of each entry, that only contains a '/' character.
+    - There should be no row headers. Row 1 must contain the first subscriber data.
+
+2. Place the images on the /public/images folder.
+    - each course must have its own subfolder
+
+3. Run the code
+    a. Open a command window on the main folder
+        - Press Ctrl + Right Click then select open command window here
+    b. Input the following code:
+        java -jar InhenyeroParser2.jar
+    c. The code will now run.
+
+4. Check the outputs
+    - The exported csv files are stored in the /public/output folder.
+    - The error report for renaming images is found in the /public/output folder. (error.txt)
