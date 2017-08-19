@@ -3,18 +3,29 @@ package com.inhenyero;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import javax.xml.crypto.Data;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.Scanner;
 
 public class DataManager implements JSONKeys{
+    private static DataManager dataManager = null;
     private JSONArray departments;
     private MessageManager mMsg;
+
+    private DataManager(){}
+
+    public static DataManager getInstance(){
+        if(dataManager == null){
+            dataManager = new DataManager();
+        }
+        return dataManager;
+    }
 
     public boolean start(){
         FileReader masterdata;
         Scanner scanner;
-        mMsg = new MessageManager();
+        mMsg = MessageManager.getInstance();
         departments = new JSONArray();
 
         mMsg.printHeader("Checking if masterdata.csv file is in /public");

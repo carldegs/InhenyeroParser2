@@ -5,10 +5,12 @@ import org.json.JSONArray;
 public class InhenyeroParser {
     private static MessageManager mMsg;
     private static DataManager mData;
+    private static CsvManager mCsv;
 
     static void initialize(){
-        mMsg = new MessageManager();
-        mData = new DataManager();
+        mMsg = MessageManager.getInstance();
+        mData = DataManager.getInstance();
+        mCsv = CsvManager.getInstance();
     }
 
     public static void main(String[] args){
@@ -22,7 +24,11 @@ public class InhenyeroParser {
             return;
         }
 
-        System.out.println(mData.getDepartments());
+        mMsg.printTitle("Starting CsvManager");
+        if(!mCsv.start()){
+
+        }
+
     }
 
 }

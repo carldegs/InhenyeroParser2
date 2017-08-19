@@ -4,6 +4,16 @@ package com.inhenyero;
  * Created by Carl on 19 Aug 2017.
  */
 public class MessageManager {
+    private static MessageManager messageManager = null;
+
+    private MessageManager(){}
+    public static MessageManager getInstance(){
+        if(messageManager == null){
+            messageManager = new MessageManager();
+        }
+
+        return messageManager;
+    }
 
     public void printTitle(String title){
 
