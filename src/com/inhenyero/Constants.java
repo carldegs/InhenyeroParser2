@@ -20,4 +20,18 @@ public class Constants {
 
     public static final String PUBLIC_DIRECTORY_PATH = new File("public/").getAbsolutePath();
     public static final String MASTERDATA_PATH = new File("public/masterdata.csv").getAbsolutePath();
+    public static final String OUTPUT_DIRECTORY_PATH = new File("public/output").getAbsolutePath();
+    public static final String[] COURSE_WITH_SUBHEADERS = {
+            "BSCoE", "BSECE", "BSEE",
+            "BSMatE", "BSEM", "BSMetE"
+    };
+
+    public static final String SPREAD_FILE_HEADER = "lastNameLeft;firstNameLeft;middleinitialLeft;" +
+            "org1Left;pos1Left;org2Left;pos2Left;org3Left;pos3Left;" +
+            "writeupLeft;@pic1Left;@pic2Left;@pic3Left;" +
+            "lastNameRight;firstNameRight;middleinitialRight;" +
+            "org1Right;pos1Right;org2Right;pos2Right;org3Right;pos3Right;" +
+            "writeupRight;@pic1Right;@pic2Right;@pic3Right;\n";
+
+
 }
