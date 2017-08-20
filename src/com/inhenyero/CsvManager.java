@@ -8,18 +8,18 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class CsvManager implements JSONKeys{
-    private static CsvManager csvManager = null;
+    private static CsvManager instance = null;
 
     private CsvManager(){}
     public static CsvManager getInstance(){
-        if(csvManager == null){
-            csvManager = new CsvManager();
+        if(instance == null){
+            instance = new CsvManager();
         }
 
-        return csvManager;
+        return instance;
     }
 
-    public static boolean start(){
+    public boolean start(){
         MessageManager mMsg = MessageManager.getInstance();
         JSONArray departments = DataManager.getInstance().getDepartments();
         JSONArray book = new JSONArray();
@@ -63,7 +63,8 @@ public class CsvManager implements JSONKeys{
 
             cBook.put(SPREADS, cSpreads);
             book.put(cBook);
-            mMsg.printSubheader("Added " + cBook.getJSONArray(SPREADS).length() + " spreads to " + cBook.getString(SPREAD_NAME), false);
+
+            mMsg.printSubheader("Added " + cBook.getJSONArray(SPREADS).length() + " spreads to " + cBook.getString(SPREAD_NAME), false, k == departments.length() - 1);
         }
 
         mMsg.printHeader("Exporting to CSV files", false);
@@ -72,7 +73,11 @@ public class CsvManager implements JSONKeys{
             JSONArray cSpreads = book.getJSONObject(k).getJSONArray(SPREADS);
 
             try {
-                mMsg.printSubheader("Creating file " + cDeptName + ".csv");
+                if(k != departments.length() - 1) {
+                    mMsg.printSubheader("Creating file " + cDeptName + ".csv");
+                } else {
+                    mMsg.printSubheader("Creating file " + cDeptName + ".csv", true, true);
+                }
                 File csvFile = new File(Constants.OUTPUT_DIRECTORY_PATH + File.separatorChar + cDeptName + ".csv");
                 csvFile.createNewFile();
 

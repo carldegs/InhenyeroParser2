@@ -1,6 +1,6 @@
 package com.inhenyero;
 
-public interface JSONKeys {
+interface JSONKeys {
     String STUDENT_NUM = "studentNum";
     String NAME = "name";
     String LAST_NAME = "last";

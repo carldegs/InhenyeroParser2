@@ -1,13 +1,11 @@
 package com.inhenyero;
 
-/**
- * Created by Carl on 19 Aug 2017.
- */
-public class MessageManager {
+class MessageManager {
     private static MessageManager messageManager = null;
+    private final int maxTitleLength = 25;
 
     private MessageManager(){}
-    public static MessageManager getInstance(){
+    static MessageManager getInstance(){
         if(messageManager == null){
             messageManager = new MessageManager();
         }
@@ -15,36 +13,49 @@ public class MessageManager {
         return messageManager;
     }
 
-    public void printTitle(String title){
-
+    void printTitle(String title){
+        System.out.println();
+        for(int k = 0; k < maxTitleLength * 2; k++){
+            System.out.print("-");
+        }
+        System.out.println();
+        System.out.println(title);
+        for(int k = 0; k < maxTitleLength * 2; k++){
+            System.out.print("-");
+        }
+        System.out.println();
     }
 
-    public void printHeader(String header){
+    void printHeader(String header){
         printHeader(header, true);
     }
 
-    public void printHeader(String header, boolean hasResult){
-        System.out.print(header + (hasResult ? "... " : "\n"));
+    void printHeader(String header, boolean hasResult){
+        System.out.print("> " + header + (hasResult ? "... " : "\n"));
     }
 
-    public void printSubheader(String subheader){
-        printSubheader(subheader, true);
+    void printSubheader(String subheader){
+        printSubheader(subheader, true, false);
     }
 
-    public void printSubheader(String subheader, boolean hasResult){
-        System.out.print("\t" + subheader + (hasResult ? "... " : "\n"));
+    void printSubheader(String subheader, boolean hasResult){
+        printSubheader(subheader, hasResult, false);
+    }
+
+    void printSubheader(String subheader, boolean hasResult, boolean isFinal){
+        System.out.print("\t" + (isFinal ? "└ " : "├ ") + subheader + (hasResult ? "... " : "\n"));
     }
     
-    public void printResult(String result){
+    void printResult(String result){
         System.out.println(result);
     }
 
-    public void printStart(){
+    void printStart(){
         System.out.println(Constants.START_TEXT);
         System.out.println();
     }
 
-    public void printError(String error){
+    void printError(String error){
         System.out.println("ERROR: " + error);
     }
 }

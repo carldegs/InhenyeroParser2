@@ -10,7 +10,6 @@ import java.util.Scanner;
 public class DataManager implements JSONKeys{
     private static DataManager dataManager = null;
     private JSONArray departments;
-    private MessageManager mMsg;
 
     private DataManager(){}
 
@@ -24,7 +23,7 @@ public class DataManager implements JSONKeys{
     public boolean start(){
         FileReader masterdata;
         Scanner scanner;
-        mMsg = MessageManager.getInstance();
+        MessageManager mMsg = MessageManager.getInstance();
         departments = new JSONArray();
 
         mMsg.printHeader("Checking if masterdata.csv file is in /public");
@@ -118,7 +117,7 @@ public class DataManager implements JSONKeys{
 
         cDept.put(DEPT_SUBS, cDeptSubs);
         departments.put(cDept);
-        mMsg.printSubheader("Added " + cDeptSubs.length() + " subscribers to " + cDeptName, false);
+        mMsg.printSubheader("Added " + cDeptSubs.length() + " subscribers to " + cDeptName, false, true);
 
         return true;
     }

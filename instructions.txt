@@ -17,8 +17,14 @@
 3. Run the code
     a. Open a command window on the main folder
         - Press Ctrl + Right Click then select open command window here
-    b. Input the following code:
-        java -jar InhenyeroParser2.jar
+    b. To ONLY generate the csv files, input:
+            java -jar InhenyeroParser.jar
+       To ONLY rename the images, input:
+            java -jar InhenyeroParser.jar -rename
+       To ONLY rename the image without printing a report, input:
+            java -jar InhenyeroParser.jar -rename -noreport
+       To generate CSV and rename images, input:
+            java -jar InhenyeroParser.jar -rename -csv
     c. The code will now run.
 
 4. Check the outputs

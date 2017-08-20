@@ -21,7 +21,7 @@ public class Subscriber {
         org2 = new String[2];
         org3 = new String[2];
     }
-    
+
     public void print(){
         System.out.println("(studentNum) " + studentNum);
         System.out.println("(name) " + name[0] + ", " + name[1] + " " + name[2]);
@@ -38,7 +38,7 @@ public class Subscriber {
         System.out.println("(writeup) " + writeup);
         System.out.println();
     }
-    
+
     public Subscriber(Subscriber sub){
         this.name = new String[3];
         this.org1 = new String[2];
