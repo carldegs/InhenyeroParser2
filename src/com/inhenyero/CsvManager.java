@@ -7,9 +7,6 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
-/**
- * Created by Carl on 20 Aug 2017.
- */
 public class CsvManager implements JSONKeys{
     private static CsvManager csvManager = null;
 
@@ -27,7 +24,7 @@ public class CsvManager implements JSONKeys{
         JSONArray departments = DataManager.getInstance().getDepartments();
         JSONArray book = new JSONArray();
 
-        mMsg.printHeader("Generating CSV Files", false);
+        mMsg.printHeader("Generating Spreads", false);
         for(int k = 0; k < departments.length(); k++){
             JSONObject cDept = (JSONObject) departments.get(k);
             JSONArray cSubs = cDept.getJSONArray(DEPT_SUBS);
@@ -84,7 +81,6 @@ public class CsvManager implements JSONKeys{
                 // Header row
                 writer.write(Constants.SPREAD_FILE_HEADER);
 
-                System.out.println(book);
                 for(int m = 0; m < cSpreads.length(); m++){
                     JSONObject cSpread = (JSONObject) cSpreads.get(m);
                     writer.write(getSpreadCsv(cSpread));
@@ -104,15 +100,14 @@ public class CsvManager implements JSONKeys{
 
     private static String getSpreadCsv(JSONObject spread) {
         String res = "";
-        res += getPageCsv(spread.getJSONObject(SPREAD_LEFT));
-        res += getPageCsv(spread.getJSONObject(SPREAD_RIGHT));
+        res += getPageCsv(spread.getJSONObject(SPREAD_LEFT)) + ";";
+        res += getPageCsv(spread.getJSONObject(SPREAD_RIGHT)) + "\n";
         return res;
     }
 
     private static String getPageCsv(JSONObject page){
         String res = "";
-        System.out.println(page);
-        if(!page.getJSONObject(NAME).getString(LAST_NAME).isEmpty()){
+        if(page.has(NAME) && !page.getJSONObject(NAME).getString(LAST_NAME).isEmpty()){
             JSONObject name = page.getJSONObject(NAME);
             JSONArray orgs = page.getJSONArray(ORGS);
 

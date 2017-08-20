@@ -32,7 +32,7 @@ public class MessageManager {
     }
 
     public void printSubheader(String subheader, boolean hasResult){
-        System.out.print("\t" + subheader + (hasResult ? "..." : "\n"));
+        System.out.print("\t" + subheader + (hasResult ? "... " : "\n"));
     }
     
     public void printResult(String result){

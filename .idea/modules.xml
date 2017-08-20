@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/InhenyeroParser2.iml" filepath="$PROJECT_DIR$/InhenyeroParser2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/InhenyeroParser.iml" filepath="$PROJECT_DIR$/InhenyeroParser.iml" />
     </modules>
   </component>
 </project>

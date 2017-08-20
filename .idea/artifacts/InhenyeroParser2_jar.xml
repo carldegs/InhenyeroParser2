@@ -2,7 +2,7 @@
   <artifact type="jar" name="InhenyeroParser2:jar">
     <output-path>$PROJECT_DIR$/out/artifacts/InhenyeroParser2_jar</output-path>
     <root id="archive" name="InhenyeroParser2.jar">
-      <element id="module-output" name="InhenyeroParser2" />
+      <element id="module-output" name="InhenyeroParser" />
     </root>
   </artifact>
 </component>
