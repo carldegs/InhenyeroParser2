@@ -23,4 +23,6 @@ interface JSONKeys {
     String SPREADS = "spreads";
     String SPREAD_LEFT = "left";
     String SPREAD_RIGHT = "right";
+    String TYPE = "type";
+    String DETAIL = "detail";
 }

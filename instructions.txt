@@ -25,6 +25,8 @@
             java -jar InhenyeroParser.jar -rename -noreport
        To generate CSV and rename images, input:
             java -jar InhenyeroParser.jar -rename -csv
+       To run in debug mode, input:
+            java -jar InhenyeroParser.jar -debug
     c. The code will now run.
 
 4. Check the outputs

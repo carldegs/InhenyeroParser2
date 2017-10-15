@@ -7,11 +7,11 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class CsvManager implements JSONKeys{
+class CsvManager implements JSONKeys{
     private static CsvManager instance = null;
 
     private CsvManager(){}
-    public static CsvManager getInstance(){
+    static CsvManager getInstance(){
         if(instance == null){
             instance = new CsvManager();
         }

@@ -9,6 +9,8 @@ class InhenyeroParser {
     private static boolean renameImages = false;
     private static boolean generateCsv = false;
     private static boolean printReport = true;
+    private static boolean isDebug = false;
+    private static String separator = ";";
 
     private static void initialize(){
         mMsg = MessageManager.getInstance();
@@ -30,6 +32,11 @@ class InhenyeroParser {
                 case "-noreport":
                     printReport = false;
                     break;
+                case "-debug":
+                    isDebug = true;
+                    break;
+                case "-comma":
+                    separator = ",";
             }
         }
 
@@ -43,7 +50,7 @@ class InhenyeroParser {
         mMsg.printStart();
 
         mMsg.printTitle("Starting DataManager");
-        if(!mData.start()){
+        if(!mData.start(isDebug)){
             mMsg.printError("Error in DataManager");
             return;
         }
@@ -58,9 +65,17 @@ class InhenyeroParser {
 
         if(renameImages) {
             mMsg.printTitle("Starting ImageManager");
+            if(!mImg.start()){
+                mMsg.printError("Error in ImageManager");
+                return;
+            }
 
             if(printReport){
                 mMsg.printTitle("Starting ReportManager");
+                if(!mReport.compile()){
+                    mMsg.printError("Error in ReportManager");
+                    return;
+                }
             }
         }
     }

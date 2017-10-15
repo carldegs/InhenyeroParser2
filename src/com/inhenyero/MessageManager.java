@@ -52,6 +52,7 @@ class MessageManager {
 
     void printStart(){
         System.out.println(Constants.START_TEXT);
+        System.out.println("version " + Constants.VERSION + " updated " + Constants.DATE);
         System.out.println();
     }
 

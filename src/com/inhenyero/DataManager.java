@@ -20,7 +20,7 @@ public class DataManager implements JSONKeys{
         return dataManager;
     }
 
-    public boolean start(){
+    public boolean start(boolean DEBUG){
         FileReader masterdata;
         Scanner scanner;
         MessageManager mMsg = MessageManager.getInstance();
@@ -45,20 +45,34 @@ public class DataManager implements JSONKeys{
             JSONObject cSub = new JSONObject();
 
             String studentNum = scanner.next();
+
             if(studentNum.charAt(0) == '/'){
-                studentNum = studentNum.substring(3);
+                try {
+                    studentNum = studentNum.substring(3);
+                } catch(IndexOutOfBoundsException e){
+                    System.out.println("END");
+                    break;
+                }
             }
             cSub.put(STUDENT_NUM, studentNum);
+
+            if(DEBUG) {
+                System.out.print(studentNum);
+            }
 
             if(!scanner.hasNext()){
                 break;
             }
 
             JSONObject name = new JSONObject();
-            name.put(LAST_NAME, scanner.next());
-            name.put(FIRST_NAME, scanner.next());
-            name.put(MIDDLE_NAME, scanner.next());
+            name.put(LAST_NAME, scanner.next().replace("�", "ñ"));
+            name.put(FIRST_NAME, scanner.next().replace("�", "ñ"));
+            name.put(MIDDLE_NAME, scanner.next().replace("�", "ñ"));
             cSub.put(NAME, name);
+
+            if(DEBUG) {
+                System.out.print(" " + name.toString());
+            }
 
             cSub.put(COURSE, scanner.next());
 
@@ -88,6 +102,11 @@ public class DataManager implements JSONKeys{
             }
             cSub.put(WRITEUP, writeup);
             cSub.put(PACKAGE_TYPE, tempStr);
+
+            if(DEBUG) {
+                System.out.println(" " + tempStr);
+            }
+
             subscribers.put(cSub);
         }
         mMsg.printResult(subscribers.length() + " CREATED");
