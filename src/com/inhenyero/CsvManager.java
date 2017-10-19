@@ -1,5 +1,6 @@
 package com.inhenyero;
 
+import com.sun.xml.internal.bind.v2.runtime.reflect.opt.Const;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -78,6 +79,17 @@ class CsvManager implements JSONKeys{
                 } else {
                     mMsg.printSubheader("Creating file " + cDeptName + ".csv", true, true);
                 }
+
+                File publicDir = new File(Constants.PUBLIC_DIRECTORY_PATH);
+                if(!publicDir.exists()){
+                    publicDir.mkdir();
+                }
+
+                File outputDir = new File(Constants.OUTPUT_DIRECTORY_PATH);
+                if(!outputDir.exists()){
+                    outputDir.mkdir();
+                }
+
                 File csvFile = new File(Constants.OUTPUT_DIRECTORY_PATH + File.separatorChar + cDeptName + ".csv");
                 csvFile.createNewFile();
 
@@ -102,10 +114,10 @@ class CsvManager implements JSONKeys{
 
         return true;
     }
-
+    static String csvSeparator = ",";
     private static String getSpreadCsv(JSONObject spread) {
         String res = "";
-        res += getPageCsv(spread.getJSONObject(SPREAD_LEFT)) + ";";
+        res += getPageCsv(spread.getJSONObject(SPREAD_LEFT)) + csvSeparator;
         res += getPageCsv(spread.getJSONObject(SPREAD_RIGHT)) + "\n";
         return res;
     }
@@ -116,27 +128,41 @@ class CsvManager implements JSONKeys{
             JSONObject name = page.getJSONObject(NAME);
             JSONArray orgs = page.getJSONArray(ORGS);
 
-            res += name.getString(LAST_NAME).toUpperCase() + ";" +
-                    name.getString(FIRST_NAME).toUpperCase() + ";" +
-                    name.getString(MIDDLE_NAME).toUpperCase() + ";";
+            res += csvcell(name.getString(LAST_NAME).toUpperCase()) + csvSeparator +
+                    csvcell(name.getString(FIRST_NAME).toUpperCase()) + csvSeparator +
+                    csvcell(name.getString(MIDDLE_NAME).toUpperCase()) + csvSeparator;
 
             for(int k = 0; k < 3; k++){
                 JSONObject org = (JSONObject) orgs.get(k);
-                res += org.getString(ORG_NAME) + ";" +
-                        org.getString(ORG_POSITION) + ";";
+                res += csvcell(org.getString(ORG_NAME)) + csvSeparator +
+                        csvcell(org.getString(ORG_POSITION)) + csvSeparator;
             }
 
-            res += page.getString(WRITEUP) + ";";
-            res += getPhotoPath(page, "SABLAY") + ";" +
-                    getPhotoPath(page, page.getString(PACKAGE_TYPE).equals("A") ? "FORMAL" : "CREATIVE") + ";" +
+            res += csvcell(page.getString(WRITEUP)) + csvSeparator;
+            res += getPhotoPath(page, "SABLAY") + csvSeparator +
+                    getPhotoPath(page, page.getString(PACKAGE_TYPE).equals("A") ? "FORMAL" : "CREATIVE") + csvSeparator +
                     getPhotoPath(page, "TOGA");
         } else {
             for(int k = 0; k < 12; k++){
-                res += ";";
+                res += csvSeparator;
             }
         }
 
         return res;
+    }
+
+    private static String csvcell(String str){
+        if(str.isEmpty()){
+            return str;
+        }
+
+        if(str.charAt(0) != '"' || str.charAt(str.length() - 1) != '"'){
+            // Not enclosed by double quotes
+            // Replace all double quotes inside with double double quotes
+            str.replaceAll("\"", "\"\"");
+            str = "\"" + str + "\"";
+        }
+        return str;
     }
 
     private static String getPhotoPath(JSONObject page, String name) {

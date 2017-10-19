@@ -14,9 +14,10 @@ class Constants {
             "S%%%S S%%%S SSSSS S%%%S  SSSSS    S%%%S   S%%%S SSSSS\n" +
             "SSSSS SSSSSsSSSSS SSSSS   SSSSS SsSSSSSsS `:;SSsSS;:'\n" +
             "                                                     \n";
-    static final String VERSION = "0.2";
-    static final String DATE = "10/15/2017";
+    static final String VERSION = "0.3";
+    static final String DATE = "10/19/2017";
 
+    static final String PUBLIC_DIRECTORY_PATH = new File("public").getAbsolutePath();
     static final String MASTERDATA_PATH = new File("public/masterdata.csv").getAbsolutePath();
     static final String OUTPUT_DIRECTORY_PATH = new File("public/output").getAbsolutePath();
     static final String IMAGES_DIRECTORY_PATH = new File("public/images").getAbsolutePath();
@@ -27,11 +28,11 @@ class Constants {
             "BSMatE", "BSEM", "BSMetE"
     };
 
-    static final String SPREAD_FILE_HEADER = "lastNameLeft;firstNameLeft;middleinitialLeft;" +
-            "org1Left;pos1Left;org2Left;pos2Left;org3Left;pos3Left;" +
-            "writeupLeft;@pic1Left;@pic2Left;@pic3Left;" +
-            "lastNameRight;firstNameRight;middleinitialRight;" +
-            "org1Right;pos1Right;org2Right;pos2Right;org3Right;pos3Right;" +
-            "writeupRight;@pic1Right;@pic2Right;@pic3Right;\n";
+    static final String SPREAD_FILE_HEADER = "lastNameLeft,firstNameLeft,middleinitialLeft," +
+            "org1Left,pos1Left,org2Left,pos2Left,org3Left,pos3Left," +
+            "writeupLeft,@pic1Left,@pic2Left,@pic3Left," +
+            "lastNameRight,firstNameRight,middleinitialRight," +
+            "org1Right,pos1Right,org2Right,pos2Right,org3Right,pos3Right," +
+            "writeupRight,@pic1Right,@pic2Right,@pic3Right,\n";
 
 }

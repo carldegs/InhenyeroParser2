@@ -49,11 +49,16 @@ public class DataManager implements JSONKeys{
             if(studentNum.charAt(0) == '/'){
                 try {
                     studentNum = studentNum.substring(3);
+
+                    if(studentNum.charAt(0) != '2'){
+                        studentNum = '2' + studentNum;
+                    }
                 } catch(IndexOutOfBoundsException e){
                     System.out.println("END");
                     break;
                 }
             }
+
             cSub.put(STUDENT_NUM, studentNum);
 
             if(DEBUG) {
